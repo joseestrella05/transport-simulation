@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  font-family: 'Outfit', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+
+  /* Deep Purple Theme Palette */
+  --bg-dark: #1e0b36;
+  /* Deepest purple background */
+  --bg-gradient-start: #130429;
+  --bg-gradient-end: #2d1b4e;
+
+  --card-bg: rgba(45, 27, 78, 0.7);
+  /* Translucent purple card */
+  --card-border: rgba(139, 92, 246, 0.2);
+  /* Subtle purple border */
+
+  --primary-green: #10b981;
+  /* Neon green for start */
+  --text-primary: #ffffff;
+  --text-secondary: #a78bfa;
+  /* Light purple text */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, var(--bg-gradient-end), var(--bg-gradient-start));
+  background-color: var(--bg-gradient-start);
+  color: var(--text-primary);
+}
+
+#root {
+  width: 100%;
+}
+
+/* Glass Card Utilities */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #a78bfa, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
