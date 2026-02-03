@@ -58,7 +58,6 @@ export const useSimulation = () => {
         });
     };
 
-    // Abordar pasajeros
     const abordarPasajeros = (punto) => {
         const espaciosDisponibles = CONFIG.CAPACIDAD_BUS - pasajerosEnBus.current.length;
         let abordados = 0;
@@ -105,10 +104,10 @@ export const useSimulation = () => {
         if (abordados > 0) {
             // Mapping internal keys to display names
             const nombrePunto = punto === 'plazaA' ? 'Plaza A' : 'Plaza B';
-            addLog(`✅ ${abordados} pasajeros abordaron en ${nombrePunto}`, 'success');
+            addLog(`${abordados} pasajeros abordaron en ${nombrePunto}`, 'success');
         }
         if (rechazados > 0) {
-            addLog(`❌ ${rechazados} rechazados por falta de dinero`, 'error');
+            addLog(`${rechazados} rechazados por falta de dinero`, 'error');
         }
 
         return abordados;
@@ -143,7 +142,7 @@ export const useSimulation = () => {
         }));
 
         if (desembarcados > 0) {
-            addLog(`⬇️ ${desembarcados} pasajeros se bajaron`, 'info');
+            addLog(`${desembarcados} pasajeros se bajaron`, 'info');
         }
 
         return desembarcados;
@@ -160,7 +159,7 @@ export const useSimulation = () => {
             generarPasajeros('plazaB');
 
             setBusStatus(prev => ({ ...prev, location: nombreActual, enTransito: false }));
-            addLog(`🚌 Bus llegó a ${nombreActual}`, 'bus');
+            addLog(`Bus llegó a ${nombreActual}`, 'bus');
 
             await new Promise(resolve => setTimeout(resolve, 500));
 
@@ -174,7 +173,7 @@ export const useSimulation = () => {
 
             // Viajar
             setBusStatus(prev => ({ ...prev, enTransito: true }));
-            addLog(`🚌 Viajando a ${nombreDestino}...`, 'bus');
+            addLog(`Viajando a ${nombreDestino}...`, 'bus');
 
             await new Promise(resolve => setTimeout(resolve, CONFIG.TIEMPO_VIAJE));
 
@@ -187,7 +186,7 @@ export const useSimulation = () => {
         if (isRunning) return;
 
         setIsRunning(true);
-        addLog('🎬 Simulación iniciada', 'success');
+        addLog('Simulación iniciada', 'success');
         intervalosRef.current.ciclo = true;
         cicloBus();
     };
@@ -224,7 +223,7 @@ export const useSimulation = () => {
         });
 
         setLogs([]);
-        addLog('🔄 Simulación reiniciada', 'info');
+        addLog('Simulación reiniciada', 'info');
     };
 
     return {
