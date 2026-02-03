@@ -3,7 +3,6 @@ import { CONFIG } from '@core/config';
 import { Pasajero } from '@domain/models/Passenger';
 
 export const useSimulation = () => {
-    // Estado de la simulación
     const [isRunning, setIsRunning] = useState(false);
     const [stats, setStats] = useState({
         personasLlegaron: 0,
@@ -26,7 +25,6 @@ export const useSimulation = () => {
 
     const [logs, setLogs] = useState([]);
 
-    // Referencias para mantener estado entre renders
     const pasajerosEnBus = useRef([]);
     const colasEspera = useRef({ plazaA: [], plazaB: [] });
     const contadorPasajeros = useRef(0);
@@ -40,7 +38,6 @@ export const useSimulation = () => {
         }]);
     };
 
-    // Generar pasajeros
     const generarPasajeros = (punto) => {
         const cantidad = Math.floor(Math.random() * 11) + 5;
 
@@ -117,7 +114,6 @@ export const useSimulation = () => {
         return abordados;
     };
 
-    // Desembarcar pasajeros
     const desembarcarPasajeros = () => {
         const pasajerosQueQuedan = [];
         let desembarcados = 0;
@@ -153,7 +149,6 @@ export const useSimulation = () => {
         return desembarcados;
     };
 
-    // Ciclo del bus
     const cicloBus = async () => {
         let puntoActual = 'plazaA';
         let puntoDestino = 'plazaB';
@@ -161,22 +156,18 @@ export const useSimulation = () => {
         let nombreDestino = 'Plaza B';
 
         while (intervalosRef.current.ciclo) {
-            // Generar pasajeros en ambas plazas
             generarPasajeros('plazaA');
             generarPasajeros('plazaB');
 
-            // Bus llega a la parada
             setBusStatus(prev => ({ ...prev, location: nombreActual, enTransito: false }));
             addLog(`🚌 Bus llegó a ${nombreActual}`, 'bus');
 
             await new Promise(resolve => setTimeout(resolve, 500));
 
-            // Desembarcar
             desembarcarPasajeros();
 
             await new Promise(resolve => setTimeout(resolve, CONFIG.TIEMPO_ABORDAJE));
 
-            // Abordar
             abordarPasajeros(puntoActual);
 
             await new Promise(resolve => setTimeout(resolve, 1000));
@@ -187,15 +178,12 @@ export const useSimulation = () => {
 
             await new Promise(resolve => setTimeout(resolve, CONFIG.TIEMPO_VIAJE));
 
-            // Intercambiar puntos
             [puntoActual, puntoDestino] = [puntoDestino, puntoActual];
             [nombreActual, nombreDestino] = [nombreDestino, nombreActual];
         }
     };
 
-    // Control de la simulación
     const iniciarSimulacion = () => {
-        // Evitar iniciar si ya está corriendo
         if (isRunning) return;
 
         setIsRunning(true);

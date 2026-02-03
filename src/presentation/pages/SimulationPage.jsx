@@ -11,7 +11,6 @@ const SimulationPage = () => {
     const { isRunning, stats, busStatus, plazas, logs, config } = state;
     const { iniciarSimulacion, detenerSimulacion, reiniciarSimulacion } = actions;
 
-    // Cálculos derivados
     const tasaRechazo = stats.personasLlegaron > 0
         ? ((stats.sinDinero / stats.personasLlegaron) * 100).toFixed(1)
         : 0;
@@ -29,7 +28,7 @@ const SimulationPage = () => {
                         Sistema de Transporte
                     </h1>
                     <p className="text-slate-400 text-lg">
-                        Simulación en tiempo real • Plaza A ↔ Plaza B
+                        Simulación Plaza A Plaza B
                     </p>
                 </div>
 
@@ -45,7 +44,7 @@ const SimulationPage = () => {
                     <div className="lg:col-span-2 glass-card rounded-2xl p-6 animate-slide-in">
                         <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
                             <TrendingUp className="text-purple-400" />
-                            Estadísticas en Tiempo Real
+                            Estadísticas 
                         </h2>
 
                         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
